@@ -9,14 +9,28 @@
 <body>
     <header>
         <h1>Admin Panel</h1>
-        <div id="submissions-container">
-            <!-- Submitted answers will be displayed here -->
+        <form id="admin-login-form">
+            <div>
+                <label for="admin-password">Password:</label>
+                <input type="password" id="admin-password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div id="upload-section" style="display: none;">
+            <h2>Upload Question Paper</h2>
+            <form id="upload-form">
+                <div>
+                    <label for="question-paper">Question Paper (PDF):</label>
+                    <input type="file" id="question-paper" accept=".pdf" required>
+                </div>
+                <button type="submit">Upload</button>
+            </form>
         </div>
+        <div id="message"></div>
     </header>
     <footer>
         <p>&copy; 2024 Student Insight Hub</p>
     </footer>
-    <script type="module" src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
