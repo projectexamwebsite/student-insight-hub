@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Student Dashboard</h1>
+        <form id="submission-form">
+            <label for="student-name">Name:</label>
+            <input type="text" id="student-name" required>
+
+            <label for="unique-code">Unique Code:</label>
+            <input type="text" id="unique-code" required>
+
+            <label for="answers">Your Answers:</label>
+            <textarea id="answers" rows="10" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </header>
+    <footer>
+        <p>&copy; 2024 Student Insight Hub</p>
+    </footer>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
