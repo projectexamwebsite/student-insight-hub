@@ -12,4 +12,29 @@
     <h1>Welcome to Student Insight Hub!</h1>
     <p>Explore the features of our platform.</p>
 </body>
+<!-- Firebase SDK -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyD4uQXIDtODwV2...N1H8iBzU",
+        authDomain: "student-insight-hub.firebaseapp.com",
+        projectId: "student-insight-hub",
+        storageBucket: "student-insight-hub.appspot.com",
+        messagingSenderId: "123456789012",
+        appId: "1:123456789012:web:abcdefg12345",
+        measurementId: "G-N1H8iBzU"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+</script>
+
 </html>
