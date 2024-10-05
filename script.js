@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
 
 // Your Firebase configuration
@@ -16,6 +16,32 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Admin login functionality
+document.getElementById('admin-login-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const password = document.getElementById('admin-password').value;
+    
+    if (password === 'admin123') {
+        document.getElementById('upload-section').style.display = 'block';
+        document.getElementById('admin-login-form').style.display = 'none';
+    } else {
+        alert('Incorrect password!');
+    }
+});
+
+// Handle file upload in admin panel
+document.getElementById('upload-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fileInput = document.getElementById('question-paper');
+    const file = fileInput.files[0];
+
+    // Here you can add your logic to upload the file (e.g., to Firebase Storage)
+
+    const message = document.getElementById('message');
+    message.textContent = 'Question paper uploaded successfully!';
+    fileInput.value = ''; // Clear the input
+});
+
 // Handle submission in dashboard
 document.getElementById('submission-form')?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -31,31 +57,9 @@ document.getElementById('submission-form')?.addEventListener('submit', async (e)
             timestamp: new Date()
         });
         alert('Submission successful!');
+        document.getElementById('submission-form').reset(); // Clear the form
     } catch (error) {
         console.error('Error submitting:', error);
         alert('Error submitting your answers. Please try again.');
     }
 });
-
-// Fetch submissions in admin panel
-async function fetchSubmissions() {
-    const querySnapshot = await getDocs(collection(db, 'submissions'));
-    const submissionsContainer = document.getElementById('submissions-container');
-    submissionsContainer.innerHTML = '';
-
-    querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        submissionsContainer.innerHTML += `
-            <div>
-                <h3>${data.name} (Code: ${data.code})</h3>
-                <p>${data.answers}</p>
-                <p>${data.timestamp.toDate()}</p>
-            </div>
-        `;
-    });
-}
-
-// Call fetchSubmissions in admin panel
-if (document.getElementById('submissions-container')) {
-    fetchSubmissions();
-}
